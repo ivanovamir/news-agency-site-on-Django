@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<!-- <div class="news">
+    {% for new in news %}
+    <a href="{{new.get_absolute_url}}">
+        <h2>{{new.title}}</h2>
+        <h3>{{new.author}}</h3>
+        <h3>{{new.post_time_created}}</h3>
+        {% if new.photo %}
+        <img src="{{new.photo.url}}" class="rounded-start rounded-end border border-4" alt="Sorry, we will add photo later :c" width="400">
+    {% endif %} 
+    </a> 
+    {% endfor %}
+</div> -->
+{% for new in news %}
+
+<div class="card" style="width: 40rem;">
+    <img class="card-img-top" src="{{new.photo.url}}" alt="Card image cap">
+    <div class="card-body">
+      <h5 class="card-title">{{new.title}}</h5>
+      <p class="card-text">{{new.description|truncatewords:15}}</p>
+      <a href="{{new.get_absolute_url}}" class="btn btn-primary">Read more</a>
+    </div>
+  </div>
+
+
+{% endfor %}
+{% endblock %}
