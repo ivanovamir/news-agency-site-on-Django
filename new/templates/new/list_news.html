@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<h3>{{tag_name}}</h3>
-{% for new in news %}
-    <a href="{{new.get_absolute_url}}">
-        <h3>{{new.title}}</h3>
-        <img src="{{new.photo.url}}" class="rounded-start rounded-end border border-4" alt="Sorry, we will add photo later :c" width="400">
-    </a>
-{% endfor %}
+<h3>#{{tag_name}}</h3>
+{% if news %}
+    {% for new in news %}
+        <a href="{{new.get_absolute_url}}">
+            <h3>{{new.title}}</h3>
+            <h3>{{new.post_time_created}}</h3>
+            <img src="{{new.photo.url}}" class="rounded-start rounded-end border border-4" alt="Sorry, we will add photo later :c" width="400">
+        </a>
+    {% endfor %}
+{% else %}
+    <h3>No news yet</h3>
+{% endif %}
 
 {% endblock %}

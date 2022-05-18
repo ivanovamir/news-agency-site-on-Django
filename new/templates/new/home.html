@@ -15,17 +15,55 @@
     </a> 
     {% endfor %}
 </div> -->
+
+<nav aria-label="...">
+  {% for p in paginator.page_range %}
+    <ul class="pagination pagination-lg text-black-50">
+      {% if page_obj.number == p %}
+        <li class="page-item active" aria-current="page">
+          <span class="page-link">{{p}}</span>
+        </li>
+      {% else %}
+        <li class="page-item"><a class="page-link" href="?page={{ p }}">{{ p }}</a></li>
+      {% endif %}
+    </ul>
+  {% endfor %}
+</nav>
+
 {% for new in news %}
 
 <div class="card" style="width: 40rem;">
     <img class="card-img-top" src="{{new.photo.url}}" alt="Card image cap">
     <div class="card-body">
-      <h5 class="card-title">{{new.title}}</h5>
+      <h5 class="card-title">{{new.title}} | {{new.post_time_created}}</h5>
       <p class="card-text">{{new.description|truncatewords:15}}</p>
       <a href="{{new.get_absolute_url}}" class="btn btn-primary">Read more</a>
     </div>
-  </div>
+</div>
 
 
 {% endfor %}
+
+<!-- <nav class="">
+  <ul>
+      {% for p in paginator.page_range %}
+
+      {% if page_obj.number == p %}
+
+      <li>{{ p }}</li>
+      
+      {% else %}
+
+      <li>
+          <a href="?page={{ p }}">{{ p }}</a>
+      </li>
+
+      {% endif %}
+
+      {% endfor %}
+  </ul>
+</nav> -->
+
+
+
 {% endblock %}

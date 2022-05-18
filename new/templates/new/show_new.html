@@ -9,7 +9,7 @@
     <div class="row ">
         <div class="col gy-5">
             {% if new.photo %}
-            <img src="{{new.photo.url}}" class="rounded-start rounded-end border border-4" alt="Sorry, we will add photo later :c" width="400">
+            <img src="{{new.photo.url}}" class="rounded-start rounded-end border border-4" alt="Sorry, we will add photo later :c" width="700">
             {% endif %}
         </div>
         <div class="col gy-5">
@@ -21,6 +21,8 @@
         <div class="col gy-5">
             <p class="fs-3">Author - {{new.author}}</p>
             <p class="fs-5">Time published - {{new.post_time_created}}</p>
+            <p class="fs-3">Tags - #{{new.tags}}</p>
+            <p class="fs-3">Views - {{new.total_views}}</p>
         </div>
     </div>
     <div class="row">
@@ -49,4 +51,7 @@
     </div>
 </div> 
 
+
+
 {% endblock %}
+

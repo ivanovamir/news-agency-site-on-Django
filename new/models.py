@@ -4,6 +4,18 @@ from django.urls import reverse
 
 # Create your models here.
 
+
+class Ip(models.Model):
+    ip = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.ip
+
+    class Meta:
+        verbose_name = 'ip'
+        ordering = ['-id']
+
+
 class News(models.Model):
     slug = models.SlugField(max_length=50, unique=True, db_index=True, verbose_name='URL')
     title = models.CharField(max_length=100)
@@ -13,6 +25,7 @@ class News(models.Model):
     is_published = models.BooleanField(default=True)
     post_time_created = models.DateTimeField(auto_now_add=True, null=False)
     tags = models.ForeignKey('Tag', on_delete=models.CASCADE)
+    views = models.ManyToManyField(Ip, related_name = 'post_views', blank=True)
 
     def __str__(self):
         return f"{self.title}, {self.author}"
@@ -20,8 +33,11 @@ class News(models.Model):
     def get_absolute_url(self):
         return reverse ('show_new', kwargs ={'slug_new': self.slug})
 
+    def total_views(self):
+        return self.views.count()
+
     class Meta:
-        verbose_name = 'list of news'
+        verbose_name = 'list of new'
         # verbose_name_plural = 
         ordering = ['-post_time_created']
 
@@ -35,8 +51,8 @@ class Tag(models.Model):
         return reverse ('show_tag', kwargs ={'slug_tag': self.name})
 
     class Meta:
-        verbose_name = 'Tags'
-        ordering = ['name']
+        verbose_name = 'Tag'
+        ordering = ['id']
 
 class Review(models.Model):
     news = models.ForeignKey(News, on_delete=models.CASCADE)
@@ -50,5 +66,5 @@ class Review(models.Model):
     #     return reverse ('show_new', kwargs ={'slug_new': self.book})
 
     class Meta:
-        verbose_name = 'Reviews'
+        verbose_name = 'Review'
         ordering = ['post_time_created']
