@@ -2,16 +2,22 @@
 {% block content %}
 
 <h3>#{{tag_name}}</h3>
+
 {% if news %}
-    {% for new in news %}
-        <a href="{{new.get_absolute_url}}">
-            <h3>{{new.title}}</h3>
-            <h3>{{new.post_time_created}}</h3>
-            <img src="{{new.photo.url}}" class="rounded-start rounded-end border border-4" alt="Sorry, we will add photo later :c" width="400">
-        </a>
-    {% endfor %}
-{% else %}
-    <h3>No news yet</h3>
+
+{% for new in news %}
+
+<div class="card" style="width: 40rem;">
+  <img src="{{new.photo.url}}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{new.title}}</h5>
+    <p class="card-text">{{new.description|truncatewords:15}}</p>
+    <a href="{{new.get_absolute_url}}" class="btn btn-primary">Read</a>
+  </div>
+</div>
+
+{% endfor %}
+
 {% endif %}
 
 {% endblock %}

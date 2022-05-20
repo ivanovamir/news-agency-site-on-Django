@@ -1,6 +1,10 @@
 {% load static %}
+
 {% load new_tags %}
+
 {% get_tag as tag %}
+
+{% load cache %}
 
 
 
@@ -10,17 +14,19 @@
       <a class="navbar-brand" href="{% url 'home' %}">
           <img src="{% static 'new/images/logo.png' %}" alt="" width="80">
       </a>
-
+      {% cache 60 navbar-main %}
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+      {% endcache %}
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+          {% cache 60 navbar-icons %}
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Feedback</a>
+            <a class="nav-link" href="{% url 'contact' %}">Feedback</a>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -36,12 +42,23 @@
               <li><a class="dropdown-item" href="#">Something else here</a></li> -->
             </ul>
           </li>
+          {% endcache %}
+
+          {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <a href="#" class="nav-link">Login</a>
+            <a href="#" class="nav-link">{{user.username}}</a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">Sign in</a>
+            <a href="{% url 'logout' %}" class="nav-link">Logout</a>
           </li>
+          {% else %}
+          <li class="nav-item">
+            <a href="{% url 'login' %}" class="nav-link">Log in</a>
+          </li>
+          <li class="nav-item">
+            <a href="{% url 'register' %}" class="nav-link">Sig in</a>
+          </li>
+          {% endif %}
         </ul>
       </div>
     </div>

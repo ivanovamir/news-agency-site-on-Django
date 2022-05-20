@@ -22,9 +22,10 @@
             <p class="fs-3">Author - {{new.author}}</p>
             <p class="fs-5">Time published - {{new.post_time_created}}</p>
             <p class="fs-3">Tags - #{{new.tags}}</p>
-            <p class="fs-3">Views - {{new.total_views}}</p>
+            <p class="fs-3">Views - {{new.ip.count}}</p>
         </div>
     </div>
+    {% if request.user.is_authenticated %}
     <div class="row">
         <div class="col gy-5">
             <div class="form-floating">
@@ -37,10 +38,15 @@
             </div>
         </div>
     </div>
+    {% else %}
+    <h3>You must login before stay comment:</h3>
+    <a href="{% url 'login' %}"><button type="button" class="btn btn-primary">Log in</button></a>
+    {% endif %}
     <div class="row">
         <div class="col gy-5">
             <div class="review">
                 <p class="fs-1">Review's:</p>
+                <h4>Total comments - {{reviews.count}}</h4>
                 {% for review in reviews %}
                     <h5>{{review.body}}</h5> <p>Time published {{review.post_time_created}}</p> 
                 {% empty %}

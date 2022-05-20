@@ -1,6 +1,8 @@
-
+{% load cache %}
 
 {% load static %}
+
+{% cache 60 footer %}
 
 <footer class="footer">
 	 <div class="container">
@@ -47,5 +49,6 @@
      
 </footer>
 
+{% endcache %}
 
 

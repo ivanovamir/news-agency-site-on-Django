@@ -1,20 +1,6 @@
 {% extends 'base.html' %}
+
 {% block content %}
-
-
-
-<!-- <div class="news">
-    {% for new in news %}
-    <a href="{{new.get_absolute_url}}">
-        <h2>{{new.title}}</h2>
-        <h3>{{new.author}}</h3>
-        <h3>{{new.post_time_created}}</h3>
-        {% if new.photo %}
-        <img src="{{new.photo.url}}" class="rounded-start rounded-end border border-4" alt="Sorry, we will add photo later :c" width="400">
-    {% endif %} 
-    </a> 
-    {% endfor %}
-</div> -->
 
 <nav aria-label="...">
   {% for p in paginator.page_range %}
@@ -44,25 +30,7 @@
 
 {% endfor %}
 
-<!-- <nav class="">
-  <ul>
-      {% for p in paginator.page_range %}
 
-      {% if page_obj.number == p %}
-
-      <li>{{ p }}</li>
-      
-      {% else %}
-
-      <li>
-          <a href="?page={{ p }}">{{ p }}</a>
-      </li>
-
-      {% endif %}
-
-      {% endfor %}
-  </ul>
-</nav> -->
 
 
 

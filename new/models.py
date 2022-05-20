@@ -25,7 +25,7 @@ class News(models.Model):
     is_published = models.BooleanField(default=True)
     post_time_created = models.DateTimeField(auto_now_add=True, null=False)
     tags = models.ForeignKey('Tag', on_delete=models.CASCADE)
-    views = models.ManyToManyField(Ip, related_name = 'post_views', blank=True)
+    ip = models.ManyToManyField(Ip, related_name = 'post_views', blank=True)
 
     def __str__(self):
         return f"{self.title}, {self.author}"
@@ -68,3 +68,5 @@ class Review(models.Model):
     class Meta:
         verbose_name = 'Review'
         ordering = ['post_time_created']
+
+    

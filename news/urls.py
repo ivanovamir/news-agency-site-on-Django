@@ -6,7 +6,8 @@ from  .import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('new.urls'))
+    path('captcha/', include('captcha.urls')),
+    path('', include('new.urls')),
 ]
 
 
