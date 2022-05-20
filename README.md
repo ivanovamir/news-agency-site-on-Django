@@ -7,6 +7,7 @@
 - Django Rest Framework (3.13.1)
 - CSS
 - JavaScript
+- Bootstrap(v.5.2)
 
 ### Added support for mobile devices and devices at specific or low resolutions
 
