@@ -1,4 +1,4 @@
-# My News agency website
+# My News agency website :point_down:
 
 ## Technologies used in this project:
 - HTML
